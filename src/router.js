@@ -7,6 +7,8 @@ import Home from './components/tabbar/Home.vue'
 import Member from './components/tabbar/Member.vue'
 import Shopcar from './components/tabbar/Shopcar.vue'
 import Search from './components/tabbar/Search.vue'
+import Newslist from './components/news/Newslist.vue'
+import Newsinfo from './components/news/Newsinfo.vue'
 
 export default new Router({
   routes: [
@@ -33,6 +35,16 @@ export default new Router({
       path: '/search',
       name: 'search',
       component: Search
+    },
+    {
+      path: '/home/newslist',
+      name: 'newslist',
+      component: Newslist
+    },
+    {
+      path: '/home/newsinfo/:id',
+      name: 'newsinfo',
+      component: Newsinfo
     }
     // {
     //   path: '/about',

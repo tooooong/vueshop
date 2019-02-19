@@ -47,6 +47,7 @@
 <style scoped>
 .container {
   padding-top: 44px;
+  padding-bottom: 55px;
   overflow-x: hidden;
 }
 .bg {

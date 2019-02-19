@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 轮播图 -->
-    <mt-swipe :auto="false">
+    <mt-swipe>
       <mt-swipe-item
         v-for="(item, index) in lists"
         :key="index"
@@ -15,13 +15,14 @@
 
     <!-- 九宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <router-link to="/home/newslist">
           <img
             src="../../assets/images/2.png"
             alt=""
           >
           <div class="mui-media-body">新闻资讯</div>
-        </a></li>
+        </router-link></li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
           <img
             src="../../assets/images/3.png"
@@ -87,12 +88,11 @@ export default {
   },
   methods: {
     getSwipe () {
-      this.$http.get("http://www.liulongbin.top:3005/api/getlunbo").then(result => {
+      this.$http.get("api/swipe").then(result => {
         if (result.body.status === 0) {
-          this.lists = result.body.message
-          // console.log(result.body);
+          this.lists = result.body.swipe
         } else {
-          Toast('加载轮播图失败')
+          Toast('加载轮播图失败！')
         }
       })
     }
