@@ -1,9 +1,18 @@
 <template>
   <div class="container">
     <!-- Header -->
-    <header class="mui-bar mui-bar-nav bg">
-      <h1 class="mui-title">Shop</h1>
-    </header>
+    <mt-header
+      fixed
+      title="Shop"
+    >
+      <span
+        slot="left"
+        @click="goBack"
+        v-show="flag"
+      >
+        <mt-button icon="back">返回</mt-button>
+      </span>
+    </mt-header>
 
     <!-- 中间的 router-view 区域 -->
     <transition>
@@ -19,18 +28,16 @@
         <span class="mui-icon mui-icon-home"></span>
         <span class="mui-tab-label">首页</span>
       </router-link>
-      <router-link
-        class="mui-tab-item"
-        to="/member"
-      >
-        <span class="mui-icon mui-icon-contact"></span>
-        <span class="mui-tab-label">会员</span>
-      </router-link>
+      
       <router-link
         class="mui-tab-item"
         to="/shopcar"
       >
-        <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge">0</span></span>
+        <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
+          <span
+            class="mui-badge"
+            id="badge"
+          >{{ $store.getters.getAllCount }}</span></span>
         <span class="mui-tab-label">购物车</span>
       </router-link>
       <router-link
@@ -40,14 +47,49 @@
         <span class="mui-icon mui-icon-search"></span>
         <span class="mui-tab-label">搜索</span>
       </router-link>
+
+      <router-link
+        class="mui-tab-item"
+        to="/member"
+      >
+        <span class="mui-icon mui-icon-contact"></span>
+        <span class="mui-tab-label">我的</span>
+      </router-link>
     </nav>
   </div>
 </template>
 
+<script>
+export default {
+  data () {
+    return {
+      flag: true
+    }
+  },
+  created () {
+    this.flag = this.$route.path === '/home' ? false : true
+  },
+  methods: {
+    goBack () {
+      this.$router.go(-1)
+    }
+  },
+  watch: {
+    '$route.path': function (newval) {
+      if (newval === '/home') {
+        this.flag = false
+      } else {
+        this.flag = true
+      }
+    }
+  }
+}
+</script>
+
 <style scoped>
 .container {
-  padding-top: 44px;
-  padding-bottom: 55px;
+  padding-top: 40px;
+  padding-bottom: 50px;
   overflow-x: hidden;
 }
 .bg {

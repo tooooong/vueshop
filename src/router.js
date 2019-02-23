@@ -9,6 +9,12 @@ import Shopcar from './components/tabbar/Shopcar.vue'
 import Search from './components/tabbar/Search.vue'
 import Newslist from './components/news/Newslist.vue'
 import Newsinfo from './components/news/Newsinfo.vue'
+import Photolist from './components/photolist/Photolist.vue'
+import Photoinfo from './components/photolist/Photoinfo.vue'
+import Goodslist from './components/goods/Goodslist.vue'
+import Goodsinfo from './components/goods/Goodsinfo.vue'
+import Goodsdetail from './components/goods/Goodsdetail.vue'
+import Goodscomment from './components/goods/Goodscomment.vue'
 
 export default new Router({
   routes: [
@@ -45,7 +51,37 @@ export default new Router({
       path: '/home/newsinfo/:id',
       name: 'newsinfo',
       component: Newsinfo
-    }
+    },
+    {
+      path: '/home/photolist',
+      name: 'photolist',
+      component: Photolist
+    },
+    {
+      path: '/home/photoinfo/:id',
+      name: 'photoinfo',
+      component: Photoinfo
+    },
+    {
+      path: '/home/goodslist',
+      name: 'goodslist',
+      component: Goodslist
+    },
+    {
+      path: '/home/goodsinfo/:id',
+      name: 'goodsinfo',
+      component: Goodsinfo
+    },
+    {
+      path: '/home/goodsdetail/:id',
+      name: 'goodsdetail',
+      component: Goodsdetail
+    },
+    {
+      path: '/home/goodscomment',
+      name: 'goodscomment',
+      component: Goodscomment
+    },
     // {
     //   path: '/about',
     //   name: 'about',

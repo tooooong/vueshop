@@ -7,15 +7,21 @@
       maxlength="120"
       cols="30"
       rows="5"
+      v-model="msg"
     ></textarea>
 
     <mt-button
       type="primary"
       size="large"
+      @click="postComment"
     >发表评论</mt-button>
 
     <div class="comment-list">
-      <div class="comment-item" v-for="(item, index) in comments" :key="index">
+      <div
+        class="comment-item"
+        v-for="(item, index) in comments"
+        :key="index"
+      >
         <div class="comment-title">
           第{{ index + 1 }}楼&nbsp;&nbsp;用户：{{ item.username }}&nbsp;&nbsp;发表时间：{{ item.add_time | dateFormat }}
         </div>
@@ -34,12 +40,14 @@
 
 <script>
 import { Toast } from 'mint-ui'
+import moment from 'moment'
 
 export default {
   name: '',
   data () {
     return {
-      comments: []
+      comments: [],
+      msg: '',
     }
   },
   created () {
@@ -50,6 +58,25 @@ export default {
       this.$http.get("api/comment").then(result => {
         if (result.body.status === 0) {
           this.comments = result.body.comment
+        } else {
+          Toast('获取评论失败！')
+        }
+      })
+    },
+    postComment () {
+      if (this.msg.trim().length === 0) {
+        return Toast('评论内容不能为空！')
+      }
+      let cmt = {
+        username: '匿名用户',
+        add_time: moment(Date.now()).format(),
+        content: this.msg.trim()
+      }
+
+      this.$http.post("api/comment", cmt).then(result => {
+        if (result.body.status === 0) {
+          this.getComment()
+          this.msg = ''
         } else {
           Toast('获取评论失败！')
         }

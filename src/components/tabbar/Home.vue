@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 轮播图 -->
-    <mt-swipe>
+    <!-- <mt-swipe>
       <mt-swipe-item
         v-for="(item, index) in lists"
         :key="index"
@@ -11,7 +11,9 @@
           alt=""
         >
       </mt-swipe-item>
-    </mt-swipe>
+    </mt-swipe> -->
+
+    <swipe :swipelist="lists"></swipe>
 
     <!-- 九宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -22,21 +24,24 @@
             alt=""
           >
           <div class="mui-media-body">新闻资讯</div>
-        </router-link></li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+        </router-link>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <router-link to="/home/photolist">
           <img
             src="../../assets/images/3.png"
             alt=""
           >
           <div class="mui-media-body">图片分享</div>
-        </a></li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+        </router-link></li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <router-link to="/home/goodslist">
           <img
             src="../../assets/images/4.png"
             alt=""
           >
           <div class="mui-media-body">商品购买</div>
-        </a></li>
+        </router-link></li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
           <img
             src="../../assets/images/5.png"
@@ -76,6 +81,7 @@
 
 <script>
 import { Toast } from 'mint-ui'
+import swipe from '../comment/swipe'
 
 export default {
   data () {
@@ -96,6 +102,9 @@ export default {
         }
       })
     }
+  },
+  components: {
+    swipe
   }
 }
 </script>
