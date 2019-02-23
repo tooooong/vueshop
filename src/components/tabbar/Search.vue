@@ -1,6 +1,6 @@
 <template>
   <div class="search">
-    <div class="container">
+    <div :class="searchBarFixed == true ? 'isFixed' :''">
       <input
         type="search"
         placeholder="搜索"
@@ -10,15 +10,30 @@
         type="submit"
         value="搜索"
         id="submit"
-      ></div>
+      >
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: '',
   data () {
-    return {}
+    return {
+      searchBarFixed: false
+    }
+  },
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    handleScroll () {
+      let scrollTop = document.documentElement.scrollTop
+      // let offsetTop = document.querySelector('.search').offsetTop
+      scrollTop >= 40 ? this.searchBarFixed = true : this.searchBarFixed = false
+    },
   }
 }
 </script>
@@ -26,14 +41,17 @@ export default {
 <style scoped>
 .search {
   height: 1000px;
-  margin-top: 5px;
+  margin-top: 1px;
 }
 #search {
-  width: 85%;
+  width: 300px;
   margin-bottom: 0;
 }
 #submit {
   height: 34px;
-  width: 15%;
+  width: 75px;
+}
+.isFixed {
+  position: fixed;
 }
 </style>
