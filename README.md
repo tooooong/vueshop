@@ -1,6 +1,18 @@
 # shop
 
-## 所使用node接口地址：https://github.com/goodtong/node-interface
+## [所使用node接口地址](https://github.com/goodtong/node-interface)
+
+### 使用技术栈
++ vue
++ vuex
++ vue-router
++ vue-resource
++ MUI
++ mint-ui
++ moment
++ vue2-preview
+
+### [展示视频](https://showmore.com/zh/u/wbrxzoc)
 
 ## Project setup
 ```
@@ -26,6 +38,3 @@ npm run test
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
