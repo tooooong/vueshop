@@ -1,6 +1,6 @@
 # shop
 
-##所使用node接口地址：https://github.com/goodtong/node-interface
+## 所使用node接口地址：https://github.com/goodtong/node-interface
 
 ## Project setup
 ```
